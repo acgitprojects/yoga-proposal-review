@@ -1,0 +1,1504 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>瑜伽中心自助管理系統 · 方案審閱</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;600;700&family=Noto+Serif+TC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js"></script>
+<style>
+  :root {
+    --bg: #F2EDE2;
+    --paper: #FAF6EC;
+    --paper-2: #F6F0E1;
+    --ink: #1B2620;
+    --ink-soft: #3B4A41;
+    --muted: #6B7A70;
+    --line: #DDD2BD;
+    --line-soft: #E8DFCD;
+    --forest: #2C4438;
+    --forest-deep: #1F3329;
+    --sage: #5E7A66;
+    --amber: #B07A3F;
+    --amber-soft: #D4A56C;
+    --terracotta: #A85A2E;
+    --ok: #4A6B43;
+    --ok-bg: #E4ECD9;
+    --discuss: #A24A1F;
+    --discuss-bg: #F5E3D3;
+    --shadow-sm: 0 1px 2px rgba(28,38,32,0.04), 0 1px 3px rgba(28,38,32,0.06);
+    --shadow-md: 0 4px 12px rgba(28,38,32,0.06), 0 2px 4px rgba(28,38,32,0.04);
+    --shadow-lg: 0 16px 40px rgba(28,38,32,0.10), 0 4px 12px rgba(28,38,32,0.06);
+    --serif: "Fraunces", "Noto Serif TC", Georgia, serif;
+    --sans: "Manrope", "Noto Sans TC", -apple-system, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.65;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    background-image:
+      radial-gradient(circle at 15% 8%, rgba(176,122,63,0.04) 0%, transparent 35%),
+      radial-gradient(circle at 85% 92%, rgba(94,122,102,0.05) 0%, transparent 40%);
+    background-attachment: fixed;
+  }
+
+  /* ============ HEADER ============ */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(242, 237, 226, 0.85);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .topbar-inner {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 14px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .brand {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 15px;
+    color: var(--forest);
+    letter-spacing: -0.01em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .brand-mark {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--forest);
+    color: var(--paper);
+    display: grid;
+    place-items: center;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: var(--sans);
+  }
+  .progress-pill {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 13px;
+    color: var(--ink-soft);
+    background: var(--paper);
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--line-soft);
+  }
+  .progress-pill strong { font-weight: 600; color: var(--forest); }
+  .progress-pill .sep { color: var(--line); }
+  .progress-pill .discuss-count { color: var(--discuss); font-weight: 600; }
+
+  /* ============ HERO ============ */
+  .hero {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 80px 32px 60px;
+    text-align: left;
+    position: relative;
+  }
+  .hero-eyebrow {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .hero-eyebrow::before {
+    content: "";
+    width: 32px;
+    height: 1px;
+    background: var(--amber);
+  }
+  .hero-title {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(40px, 6vw, 64px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 24px;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--forest);
+    font-weight: 400;
+  }
+  .hero-sub {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    max-width: 620px;
+    margin-bottom: 40px;
+  }
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    padding-top: 28px;
+    border-top: 1px solid var(--line-soft);
+    font-size: 13px;
+  }
+  .hero-meta-item .label {
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 11px;
+    margin-bottom: 4px;
+    font-weight: 600;
+  }
+  .hero-meta-item .value {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .instruction {
+    max-width: 980px;
+    margin: 0 auto 56px;
+    padding: 0 32px;
+  }
+  .instruction-card {
+    background: var(--paper);
+    border: 1px solid var(--line-soft);
+    border-radius: 4px;
+    padding: 28px 32px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    position: relative;
+    overflow: hidden;
+  }
+  .instruction-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    width: 4px;
+    background: var(--amber);
+  }
+  .instruction-icon {
+    font-size: 22px;
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .instruction-text {
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+  }
+  .instruction-text strong { color: var(--forest); font-weight: 600; }
+  .instruction-text .btn-demo {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: 600;
+    margin: 0 2px;
+    vertical-align: 1px;
+  }
+  .instruction-text .btn-demo.ok { background: var(--ok-bg); color: var(--ok); }
+  .instruction-text .btn-demo.discuss { background: var(--discuss-bg); color: var(--discuss); }
+
+  /* ============ MAIN ============ */
+  main {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 32px 80px;
+  }
+
+  /* ============ SECTION ============ */
+  .section {
+    margin-bottom: 80px;
+    scroll-margin-top: 100px;
+  }
+  .section-num {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 13px;
+    color: var(--amber);
+    margin-bottom: 8px;
+    display: block;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin-bottom: 14px;
+  }
+  .section-lead {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 17px;
+    color: var(--muted);
+    margin-bottom: 36px;
+    max-width: 680px;
+  }
+
+  /* ============ CARD ============ */
+  .card {
+    background: var(--paper);
+    border: 1px solid var(--line-soft);
+    border-radius: 6px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .card.is-ok {
+    border-color: var(--ok);
+    background: linear-gradient(180deg, var(--paper) 0%, rgba(228,236,217,0.25) 100%);
+  }
+  .card.is-discuss {
+    border-color: var(--discuss);
+    background: linear-gradient(180deg, var(--paper) 0%, rgba(245,227,211,0.35) 100%);
+  }
+  .card-head {
+    padding: 26px 32px 8px;
+  }
+  .card-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 8px;
+  }
+  .card-tag.critical { color: var(--terracotta); }
+  .card-title {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 1.25;
+    color: var(--ink);
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+  }
+  .card-body {
+    padding: 12px 32px 24px;
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+  }
+  .card-body p { margin-bottom: 12px; }
+  .card-body p:last-child { margin-bottom: 0; }
+  .card-body ul { margin: 8px 0 12px 0; padding-left: 22px; }
+  .card-body li { margin-bottom: 6px; }
+  .card-body strong { color: var(--forest); font-weight: 600; }
+
+  /* feature highlight list */
+  .feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 4px 0 0 0;
+  }
+  .feature-list li {
+    padding: 14px 0;
+    border-bottom: 1px dashed var(--line-soft);
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 16px;
+    align-items: baseline;
+  }
+  .feature-list li:last-child { border-bottom: none; }
+  .feature-list .feat-name {
+    font-weight: 600;
+    color: var(--forest);
+    font-size: 14px;
+  }
+  .feature-list .feat-desc {
+    color: var(--ink-soft);
+    font-size: 14px;
+  }
+
+  /* table */
+  .pretty-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 4px 0 0 0;
+    font-size: 14px;
+  }
+  .pretty-table th, .pretty-table td {
+    padding: 14px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .pretty-table th {
+    font-family: var(--sans);
+    font-weight: 600;
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--paper-2);
+    border-bottom: 1px solid var(--line);
+  }
+  .pretty-table td:first-child { font-weight: 500; color: var(--ink); }
+  .pretty-table tr:last-child td { border-bottom: none; }
+  .pretty-table.pricing tr.total td {
+    background: var(--forest);
+    color: var(--paper);
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 600;
+  }
+  .pretty-table.pricing tr.total td:first-child { color: var(--paper); }
+  .pretty-table.pricing tr.total td:last-child { color: var(--amber-soft); }
+  .pretty-table .price-cell {
+    font-family: var(--serif);
+    font-weight: 500;
+    color: var(--forest);
+    text-align: right;
+  }
+
+  /* timeline */
+  .timeline {
+    position: relative;
+    padding-left: 28px;
+    margin-top: 8px;
+  }
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 7px;
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
+    background: var(--line);
+  }
+  .timeline-item {
+    position: relative;
+    padding-bottom: 22px;
+  }
+  .timeline-item:last-child { padding-bottom: 0; }
+  .timeline-item::before {
+    content: "";
+    position: absolute;
+    left: -28px;
+    top: 8px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--paper);
+    border: 2px solid var(--amber);
+  }
+  .timeline-week {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 13px;
+    color: var(--amber);
+    margin-bottom: 2px;
+  }
+  .timeline-title {
+    font-weight: 600;
+    color: var(--forest);
+    font-size: 15px;
+    margin-bottom: 4px;
+  }
+  .timeline-desc {
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+
+  /* risk grid */
+  .risk-grid {
+    display: grid;
+    grid-template-columns: auto 1fr 1fr;
+    gap: 0;
+    margin-top: 4px;
+    border-top: 1px solid var(--line-soft);
+  }
+  .risk-grid > div {
+    padding: 14px 14px;
+    border-bottom: 1px solid var(--line-soft);
+    font-size: 14px;
+  }
+  .risk-grid .rg-head {
+    font-weight: 600;
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--paper-2);
+    padding: 10px 14px;
+  }
+  .risk-grid .rg-scenario { font-weight: 600; color: var(--forest); }
+  .risk-grid .rg-risk { color: var(--terracotta); }
+
+  /* ============ DIAGRAMS ============ */
+  .diagram-section {
+    background: var(--paper);
+    border: 1px solid var(--line-soft);
+    border-radius: 6px;
+    padding: 32px;
+    margin-bottom: 20px;
+  }
+  .diagram-block {
+    margin-bottom: 36px;
+  }
+  .diagram-block:last-child { margin-bottom: 0; }
+  .diagram-label {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--amber);
+    margin-bottom: 4px;
+  }
+  .diagram-title {
+    font-family: var(--serif);
+    font-size: 19px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 18px;
+  }
+  .mermaid {
+    background: var(--paper-2);
+    border: 1px solid var(--line-soft);
+    border-radius: 4px;
+    padding: 24px;
+    overflow-x: auto;
+    text-align: center;
+  }
+  .mermaid svg { max-width: 100%; height: auto; }
+
+  /* ============ REVIEW BAR ============ */
+  .review-bar {
+    background: var(--paper-2);
+    border-top: 1px solid var(--line-soft);
+    padding: 18px 32px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .review-prompt {
+    font-size: 13px;
+    color: var(--muted);
+    flex: 0 0 auto;
+    margin-right: auto;
+  }
+  .review-prompt strong { color: var(--forest); font-weight: 600; }
+  .btn {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 9px 18px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: var(--paper);
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: all 0.18s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    letter-spacing: 0.01em;
+  }
+  .btn:hover {
+    border-color: var(--ink-soft);
+    transform: translateY(-1px);
+  }
+  .btn-ok.active {
+    background: var(--ok);
+    color: var(--paper);
+    border-color: var(--ok);
+  }
+  .btn-discuss.active {
+    background: var(--discuss);
+    color: var(--paper);
+    border-color: var(--discuss);
+  }
+  .review-note {
+    width: 100%;
+    margin-top: 14px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, margin-top 0.3s ease;
+  }
+  .review-note.open {
+    max-height: 200px;
+    margin-top: 14px;
+  }
+  .review-note textarea {
+    width: 100%;
+    min-height: 72px;
+    padding: 12px 14px;
+    background: var(--paper);
+    border: 1px solid var(--discuss);
+    border-radius: 4px;
+    font-family: var(--sans);
+    font-size: 14px;
+    color: var(--ink);
+    line-height: 1.5;
+    resize: vertical;
+  }
+  .review-note textarea:focus { outline: 2px solid var(--amber-soft); outline-offset: -1px; }
+  .review-note label {
+    display: block;
+    font-size: 12px;
+    color: var(--discuss);
+    font-weight: 600;
+    margin-bottom: 6px;
+    letter-spacing: 0.04em;
+  }
+
+  /* ============ SUMMARY ============ */
+  .summary-section {
+    margin-top: 80px;
+    padding: 56px 32px;
+    background: var(--forest-deep);
+    color: var(--paper);
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+  }
+  .summary-section::before {
+    content: "";
+    position: absolute;
+    top: -50%; right: -20%;
+    width: 60%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(212,165,108,0.15) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .summary-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--amber-soft);
+    margin-bottom: 16px;
+  }
+  .summary-title {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 1.15;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .summary-title em { font-style: italic; color: var(--amber-soft); }
+  .summary-sub {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 16px;
+    opacity: 0.7;
+    margin-bottom: 36px;
+  }
+
+  .summary-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .stat {
+    padding: 22px 20px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 4px;
+  }
+  .stat-num {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 42px;
+    line-height: 1;
+    color: var(--paper);
+    margin-bottom: 6px;
+  }
+  .stat-num.ok { color: #A8C893; }
+  .stat-num.discuss { color: var(--amber-soft); }
+  .stat-num.pending { color: rgba(255,255,255,0.5); }
+  .stat-label {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    font-weight: 600;
+  }
+
+  .summary-list-title {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--amber-soft);
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(212,165,108,0.2);
+  }
+  #discussList {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 32px 0;
+  }
+  #discussList li {
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  #discussList li:last-child { border-bottom: none; }
+  .discuss-item-title {
+    font-weight: 600;
+    color: var(--paper);
+    margin-bottom: 4px;
+    font-size: 15px;
+  }
+  .discuss-item-note {
+    color: rgba(255,255,255,0.7);
+    font-size: 14px;
+    font-style: italic;
+    line-height: 1.5;
+  }
+  .discuss-item-note.empty { opacity: 0.4; }
+  .discuss-empty {
+    color: rgba(255,255,255,0.5);
+    font-style: italic;
+    font-size: 14px;
+    padding: 12px 0;
+  }
+
+  .summary-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 32px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .summary-actions .btn-print {
+    background: var(--amber);
+    color: var(--forest-deep);
+    border: none;
+    padding: 14px 28px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+    transition: all 0.2s;
+  }
+  .summary-actions .btn-print:hover {
+    background: var(--amber-soft);
+    transform: translateY(-1px);
+  }
+  .summary-actions .btn-reset {
+    background: transparent;
+    color: rgba(255,255,255,0.6);
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 14px 22px;
+    border-radius: 4px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .summary-actions .btn-reset:hover {
+    color: var(--paper);
+    border-color: rgba(255,255,255,0.3);
+  }
+
+  /* footer */
+  footer {
+    text-align: center;
+    padding: 48px 32px;
+    color: var(--muted);
+    font-size: 13px;
+    border-top: 1px solid var(--line-soft);
+    margin-top: 32px;
+  }
+  footer .marca {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--forest);
+    font-size: 15px;
+    margin-bottom: 6px;
+  }
+
+  /* responsive */
+  @media (max-width: 720px) {
+    .topbar-inner { padding: 12px 20px; }
+    .progress-pill { font-size: 11px; padding: 5px 10px; gap: 8px; }
+    .hero { padding: 56px 20px 40px; }
+    .instruction { padding: 0 20px; }
+    .instruction-card { padding: 22px 22px 22px 26px; flex-direction: column; gap: 12px; }
+    main { padding: 0 20px 60px; }
+    .card-head, .card-body { padding-left: 22px; padding-right: 22px; }
+    .review-bar { padding: 16px 22px; }
+    .summary-section { padding: 40px 24px; }
+    .summary-stats { grid-template-columns: 1fr; }
+    .section-title { font-size: 28px; }
+    .feature-list li { grid-template-columns: 1fr; gap: 2px; }
+    .feature-list .feat-name { font-size: 13px; }
+    .risk-grid { grid-template-columns: 1fr; }
+    .risk-grid .rg-head { display: none; }
+    .risk-grid > div { padding: 10px 14px; }
+    .risk-grid .rg-scenario { padding-top: 16px; border-top: 2px solid var(--amber); margin-top: -1px; }
+  }
+
+  /* print */
+  @media print {
+    body { background: white; }
+    .topbar, .review-bar, .summary-actions { display: none !important; }
+    .card, .diagram-section, .instruction-card { box-shadow: none; border: 1px solid #ccc; page-break-inside: avoid; }
+    .summary-section { background: white; color: #1B2620; border: 2px solid var(--forest); }
+    .summary-section * { color: #1B2620 !important; }
+    .stat-num.ok { color: var(--ok) !important; }
+    .stat-num.discuss { color: var(--discuss) !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ TOP BAR ============ -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <div class="brand-mark">J</div>
+      <span>JARY AI × UPNX</span>
+    </div>
+    <div class="progress-pill">
+      <span>已審閱 <strong id="reviewedCount">0</strong> / 10</span>
+      <span class="sep">·</span>
+      <span class="discuss-count" id="discussBadge">0 項想討論</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-eyebrow">方案審閱 · Proposal Review</div>
+  <h1 class="hero-title">瑜伽中心<br>自助管理系統<em> 方案。</em></h1>
+  <p class="hero-sub">為 Jason 預備的 10 個關鍵決策點 — 請逐項過目，需要討論的地方留言給我，這份頁面是我們開會時的工作底稿。</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <div class="label">客戶</div>
+      <div class="value">Jason · Target Success</div>
+    </div>
+    <div class="hero-meta-item">
+      <div class="label">場地</div>
+      <div class="value">約 500 平方呎瑜伽中心</div>
+    </div>
+    <div class="hero-meta-item">
+      <div class="label">方案版本</div>
+      <div class="value">v1.0 · 2026 年 5 月</div>
+    </div>
+    <div class="hero-meta-item">
+      <div class="label">準備</div>
+      <div class="value">JARY AI × UPNX</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INSTRUCTION ============ -->
+<div class="instruction">
+  <div class="instruction-card">
+    <div class="instruction-icon">📝</div>
+    <div class="instruction-text">
+      <strong>使用方法</strong>：每一項都有兩個按鈕 —
+      <span class="btn-demo ok">沒問題</span> 表示同意現行設計；
+      <span class="btn-demo discuss">想討論</span> 會打開一個輸入框讓您留言。<br>
+      審閱完畢後，捲到頁底會看到一份「需討論清單」總結，可以截圖或列印作為會議用。
+    </div>
+  </div>
+</div>
+
+<main>
+
+<!-- ============ 1. 系統設計 ============ -->
+<section class="section" id="s1">
+  <span class="section-num">— Item 01</span>
+  <h2 class="section-title">系統功能設計</h2>
+  <p class="section-lead">由智慧硬件、AskJary 智能助理、BuildOS 平台組成的整合方案。</p>
+
+  <div class="card" data-id="design">
+    <div class="card-head">
+      <div class="card-tag">整體設計</div>
+      <h3 class="card-title">智慧場地、預訂、客服一體化</h3>
+    </div>
+    <div class="card-body">
+      <p>會員透過網站完成註冊及付款，之後即可在<strong>網站</strong>或<strong>WhatsApp（AskJary）</strong>進行預訂、改期、查詢餘額。系統會在預訂確認後自動發送一次性門鎖密碼，入場時硬件聯動 — 燈光及冷氣自動開啟，時段結束 15 分鐘後自動關閉。</p>
+
+      <ul class="feature-list">
+        <li>
+          <span class="feat-name">🔐 智慧門鎖</span>
+          <span class="feat-desc">支援密碼及指紋；預訂確認後自動發送一次性密碼</span>
+        </li>
+        <li>
+          <span class="feat-name">💡 智能照明</span>
+          <span class="feat-desc">入場後自動開啟，離場 15 分鐘後自動關閉</span>
+        </li>
+        <li>
+          <span class="feat-name">❄️ 冷氣控制</span>
+          <span class="feat-desc">Milesight 智慧恆溫器，連動預訂狀態自動啟停</span>
+        </li>
+        <li>
+          <span class="feat-name">📹 CCTV 監控</span>
+          <span class="feat-desc">影像串流接入 BuildOS 後台，方便遠端管理</span>
+        </li>
+        <li>
+          <span class="feat-name">💬 AskJary 助理</span>
+          <span class="feat-desc">會員可隨時 WhatsApp 查詢會籍、餘額、有效期、預訂歷史</span>
+        </li>
+        <li>
+          <span class="feat-name">🛠️ 管理後台</span>
+          <span class="feat-desc">預訂、會員、設備、儀表板一站式管理</span>
+        </li>
+      </ul>
+    </div>
+    <div class="review-bar">
+      <span class="review-prompt"><strong>Jason</strong>，這個整體系統設計可以嗎？</span>
+      <button class="btn btn-ok" data-action="ok">✓ 沒問題</button>
+      <button class="btn btn-discuss" data-action="discuss">💬 想討論</button>
+      <div class="review-note">
+        <label>請告訴我您想討論甚麼：</label>
+        <textarea placeholder="例如：想加多一個指紋註冊流程的細節 / 想了解 AskJary 支援的語言..."></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- AskJary 作為 CS -->
+  <div class="card" data-id="askjary_cs">
+    <div class="card-head">
+      <div class="card-tag">前線客戶服務</div>
+      <h3 class="card-title">AskJary 即時分流、自動上報您</h3>
+    </div>
+    <div class="card-body">
+      <p>無人場地最擔心的是「會員遇到問題沒人理」。AskJary 同時擔任前線 CS — 會員可隨時 WhatsApp 上報設備故障、清潔問題、場地安全等情況，AskJary 即時分類並按嚴重程度通知您。</p>
+      <div class="risk-grid" style="grid-template-columns: auto 1fr 1fr;">
+        <div class="rg-head">類別</div>
+        <div class="rg-head">AskJary 即時反應</div>
+        <div class="rg-head">上報 Jason 方式</div>
+
+        <div class="rg-scenario">🚨 緊急<br><span style="font-weight:400;font-size:12px;color:var(--muted)">無法入場 / 卡在場內</span></div>
+        <div>即時安撫 · 提供緊急聯絡 · 啟動應急程序</div>
+        <div><strong>即時 WhatsApp + 來電通知</strong></div>
+
+        <div class="rg-scenario">⚠️ 重要<br><span style="font-weight:400;font-size:12px;color:var(--muted)">設備故障影響使用</span></div>
+        <div>確認問題 · 提供臨時建議 · 登記跟進</div>
+        <div><strong>30 分鐘內 WhatsApp 通知</strong></div>
+
+        <div class="rg-scenario">📋 一般<br><span style="font-weight:400;font-size:12px;color:var(--muted)">清潔 / 補給 / 查詢</span></div>
+        <div>自助回答或登記工單</div>
+        <div><strong>每日匯總報告</strong></div>
+      </div>
+    </div>
+    <div class="review-bar">
+      <span class="review-prompt">這個三級分流邏輯適合您嗎？</span>
+      <button class="btn btn-ok" data-action="ok">✓ 沒問題</button>
+      <button class="btn btn-discuss" data-action="discuss">💬 想討論</button>
+      <div class="review-note">
+        <label>請告訴我您想討論甚麼：</label>
+        <textarea placeholder="例如：緊急的定義想調整 / 想改成 15 分鐘內通知..."></textarea>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. 流程圖 ============ -->
+<section class="section" id="s2">
+  <span class="section-num">— Item 02</span>
+  <h2 class="section-title">系統運作流程</h2>
+  <p class="section-lead">三張圖總覽：架構、會員旅程、自動化時序。</p>
+
+  <div class="diagram-section">
+    <div class="diagram-block">
+      <div class="diagram-label">圖 2.1</div>
+      <div class="diagram-title">系統架構</div>
+      <div class="mermaid">
+flowchart TB
+    subgraph User ["👤 用戶端"]
+        Web["🌐 網站\n(會員 / 預訂)"]
+        WA["💬 WhatsApp"]
+    end
+    subgraph AI ["🤖 AI 智能層"]
+        Jary["AskJary\n智能助理"]
+    end
+    subgraph Core ["⚙️ 核心系統"]
+        BO["BuildOS\n預訂 + 設備控制"]
+        DB[("會員 / 預訂\n資料庫")]
+    end
+    subgraph HW ["🏠 場地硬件"]
+        Lock["🔐 智慧門鎖"]
+        Light["💡 智能照明"]
+        AC["❄️ 冷氣控制"]
+        CCTV["📹 CCTV"]
+    end
+    Pay["💳 付款閘道\nPayMe · FPS · 信用卡"]
+    Web --> BO
+    WA --> Jary
+    Jary --> BO
+    BO <--> DB
+    BO --> Lock
+    BO --> Light
+    BO --> AC
+    CCTV --> BO
+    Web --> Pay
+    Pay --> BO
+      </div>
+    </div>
+
+    <div class="diagram-block">
+      <div class="diagram-label">圖 2.2</div>
+      <div class="diagram-title">會員使用流程</div>
+      <div class="mermaid">
+flowchart TD
+    A["👤 用戶於網站\n註冊賬戶"] --> B["💳 選擇會籍方案並付款\n(PayMe / FPS / 信用卡)"]
+    B --> C{選擇預訂渠道}
+    C -->|網站| D["🌐 網頁選擇時段"]
+    C -->|WhatsApp| E["💬 與 AskJary 對話預訂"]
+    D --> F["✅ 系統自動驗證\n會籍及時段"]
+    E --> F
+    F --> G["📲 收到 WhatsApp 訊息\n+ 一次性門鎖密碼"]
+    G --> H["🚪 入場時輸入密碼開鎖"]
+    H --> I["💡 系統自動開啟\n照明及冷氣"]
+    I --> J["🧘 享用瑜伽時段"]
+    J --> K["⏰ 時段完結後 15 分鐘"]
+    K --> L["🔌 系統自動關閉\n照明及冷氣"]
+      </div>
+    </div>
+
+    <div class="diagram-block">
+      <div class="diagram-label">圖 2.3</div>
+      <div class="diagram-title">自動化時序</div>
+      <div class="mermaid">
+sequenceDiagram
+    actor M as 會員
+    participant J as AskJary
+    participant B as BuildOS
+    participant H as 場地硬件
+
+    Note over M,H: 預訂階段
+    M->>J: WhatsApp 預訂時段
+    J->>B: 驗證會籍 + 鎖定時段
+    B-->>J: 預訂成功
+    J->>M: 發送提示 + 一次性密碼
+
+    Note over M,H: 入場
+    M->>H: 輸入密碼開鎖
+    H->>B: 通知簽到
+    B->>H: 開啟照明
+    B->>H: 開啟冷氣
+
+    Note over M,H: 使用中
+    M->>M: 享用瑜伽時段
+
+    Note over M,H: 離場（時段完結後 15 分鐘）
+    B->>H: 關閉照明
+    B->>H: 關閉冷氣
+    B->>B: 記錄使用數據
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-id="flow">
+    <div class="card-head">
+      <div class="card-tag">流程確認</div>
+      <h3 class="card-title">上述流程是否符合您的預期？</h3>
+    </div>
+    <div class="card-body">
+      <p>特別留意：自動關燈/冷氣的「15 分鐘緩衝」是否合適、密碼是「一次性」還是「整個預訂時段有效」、CCTV 影像保留多久等細節，都可以在這裡提出。</p>
+    </div>
+    <div class="review-bar">
+      <span class="review-prompt">流程順暢嗎？</span>
+      <button class="btn btn-ok" data-action="ok">✓ 沒問題</button>
+      <button class="btn btn-discuss" data-action="discuss">💬 想討論</button>
+      <div class="review-note">
+        <label>請告訴我您想討論甚麼：</label>
+        <textarea placeholder="例如：15 分鐘緩衝想改成 30 分鐘 / 想增加離場提醒訊息..."></textarea>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. 一次性費用 ============ -->
+<section class="section" id="s3">
+  <span class="section-num">— Item 03</span>
+  <h2 class="section-title">一次性安裝費</h2>
+  <p class="section-lead">硬件、安裝、許可證、定制開發的總和。</p>
+
+  <div class="card" data-id="pricing_onetime">
+    <div class="card-head">
+      <div class="card-tag">收費 · 一次性</div>
+      <h3 class="card-title">HK$29,100</h3>
+    </div>
+    <div class="card-body">
+      <table class="pretty-table pricing">
+        <thead>
+          <tr><th>項目</th><th style="text-align:right">費用（港幣）</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>硬件設備（智慧鎖 · 照明控制器 · 恆溫器）</td><td class="price-cell">$5,000</td></tr>
+          <tr><td>現場安裝及調試</td><td class="price-cell">$6,000</td></tr>
+          <tr><td>AI 智能平台許可證</td><td class="price-cell">$3,100</td></tr>
+          <tr><td>軟件定制開發（預訂系統 · 會員邏輯 · AskJary 整合）</td><td class="price-cell">$15,000</td></tr>
+          <tr class="total"><td>一次性費用合計</td><td style="text-align:right">$29,100</td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top:16px;font-size:13px;color:var(--muted);font-style:italic">適用於單一中心 約 500 平方呎。AI 平台許可證費用按美元匯率計算，最終以發票日匯率為準。</p>
+    </div>
+    <div class="review-bar">
+      <span class="review-prompt"><strong>一次性 HK$29,100</strong> 可以接受嗎？</span>
+      <button class="btn btn-ok" data-action="ok">✓ 沒問題</button>
+      <button class="btn btn-discuss" data-action="discuss">💬 想討論</button>
+      <div class="review-note">
+        <label>請告訴我您想討論甚麼：</label>
+        <textarea placeholder="例如：軟件開發費可否分期 / 想了解硬件具體型號..."></textarea>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. 每月費用 ============ -->
+<section class="section" id="s4">
+  <span class="section-num">— Item 04</span>
+  <h2 class="section-title">每月運作費</h2>
+  <p class="section-lead">平台維運、AskJary 客服、AI 平台運作。</p>
+
+  <div class="card" data-id="pricing_monthly">
+    <div class="card-head">
+      <div class="card-tag">收費 · 每月</div>
+      <h3 class="card-title">HK$800 / 月</h3>
+    </div>
+    <div class="card-body">
+      <table class="pretty-table pricing">
+        <thead>
+          <tr><th>項目</th><th style="text-align:right">月費（港幣）</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>BuildOS 平台 · WhatsApp 客戶服務（AskJary）· AI 平台運作</td><td class="price-cell">$800</td></tr>
+          <tr class="total"><td>每月合計</td><td style="text-align:right">$800</td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top:16px;font-size:13px;color:var(--muted);font-style:italic">包含系統維護、AI 平台運算、WhatsApp 客服訊息費用 — 無隱藏額外費用。</p>
+    </div>
+    <div class="review-bar">
+      <span class="review-prompt"><strong>每月 HK$800</strong> 可以接受嗎？</span>
+      <button class="btn btn-ok" data-action="ok">✓ 沒問題</button>
+      <button class="btn btn-discuss" data-action="discuss">💬 想討論</button>
+      <div class="review-note">
+        <label>請告訴我您想討論甚麼：</label>
+        <textarea placeholder="例如：想知 WhatsApp 訊息有沒有用量上限 / 想了解續約條款..."></textarea>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. 時間表 ============ -->
+<section class="section" id="s5">
+  <span class="section-num">— Item 05</span>
+  <h2 class="section-title">時間表</h2>
+  <p class="section-lead">由需求確認到上線驗收，預計約 5 週。</p>
+
+  <div class="card" data-id="timeline">
+    <div class="card-head">
+      <div class="card-tag">時程</div>
+      <h3 class="card-title">全程約 5 週</h3>
+    </div>
+    <div class="card-body">
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-week">第 1 週</div>
+          <div class="timeline-title">需求確認</div>
+          <div class="timeline-desc">確認系統配置、硬件型號及會員邏輯細節</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-week">第 2 週</div>
+          <div class="timeline-title">硬件採購及安裝</div>
+          <div class="timeline-desc">現場安裝及初步測試</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-week">第 3–4 週</div>
+          <div class="timeline-title">系統設置</div>
+          <div class="timeline-desc">BuildOS 配置、AskJary 整合、付款接入</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-week">第 5 週</div>
+          <div class="timeline-title">用戶驗收</div>
+          <div class="timeline-desc">管理員培訓、會員流程端對端測試</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-bar">
+      <span class="review-prompt">這個 <strong>5 週時程</strong>配合您的開業計劃嗎？</span>
+      <button class="btn btn-ok" data-action="ok">✓ 沒問題</button>
+      <button class="btn btn-discuss" data-action="discuss">💬 想討論</button>
+      <div class="review-note">
+        <label>請告訴我您想討論甚麼：</label>
+        <textarea placeholder="例如：希望某個日期前完工 / 想加快或放慢進度..."></textarea>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. 緊急應變 ============ -->
+<section class="section" id="s6">
+  <span class="section-num">— Item 06 · 最關鍵</span>
+  <h2 class="section-title">緊急應變及無人值守責任</h2>
+  <p class="section-lead">無人自助場地最大的風險點 — 必須在簽約前一同確認應變機制。</p>
+
+  <div class="card" data-id="emergency">
+    <div class="card-head">
+      <div class="card-tag critical">⚠️ 重要決策</div>
+      <h3 class="card-title">四種高風險情景及建議應變</h3>
+    </div>
+    <div class="card-body">
+      <div class="risk-grid">
+        <div class="rg-head">情景</div>
+        <div class="rg-head">風險</div>
+        <div class="rg-head">建議應變</div>
+
+        <div class="rg-scenario">互聯網斷線</div>
+        <div class="rg-risk">門鎖驗證失敗、AskJary 無回應、會員無法入場</div>
+        <div>配置 4G 後備網絡<br>提供 24/7 應急電話<br>管理員手機可離線開鎖</div>
+
+        <div class="rg-scenario">硬件突發故障</div>
+        <div class="rg-risk">會員入場後燈光／冷氣／門鎖失效</div>
+        <div>設定 SLA（如 1 小時內到場）<br>會員即時補償政策</div>
+
+        <div class="rg-scenario">緊急逃生</div>
+        <div class="rg-risk">火警、地震或醫療緊急情況</div>
+        <div>門鎖內側符合消防條例（徒手可開）<br>建議加裝緊急通報按鈕</div>
+
+        <div class="rg-scenario">夜間異常事件</div>
+        <div class="rg-risk">無人發現會員身體不適或場地異常</div>
+        <div>CCTV 設定 AI 異常偵測<br>長時間無動靜自動通報</div>
+      </div>
+    </div>
+    <div class="review-bar">
+      <span class="review-prompt">上述應變機制是否充分？需要加強哪一項？</span>
+      <button class="btn btn-ok" data-action="ok">✓ 沒問題</button>
+      <button class="btn btn-discuss" data-action="discuss">💬 想討論</button>
+      <div class="review-note">
+        <label>請告訴我您想討論甚麼：</label>
+        <textarea placeholder="例如：希望加緊急按鈕 / SLA 想改為 30 分鐘 / 想加保安公司巡邏服務..."></textarea>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. 保險 ============ -->
+<section class="section" id="s7">
+  <span class="section-num">— Item 07</span>
+  <h2 class="section-title">保險覆蓋</h2>
+  <p class="section-lead">無人自助場地的保險條款與傳統有人場地不同。</p>
+
+  <div class="card" data-id="insurance">
+    <div class="card-head">
+      <div class="card-tag">業務政策</div>
+      <h3 class="card-title">建議與保險經紀確認三項</h3>
+    </div>
+    <div class="card-body">
+      <ul>
+        <li><strong>公眾責任險</strong>是否涵蓋「無人值守」運作模式</li>
+        <li><strong>設備故障</strong>引致客戶體驗中斷的賠償責任</li>
+        <li><strong>網絡安全責任</strong>（會員個人資料及付款資訊外洩）</li>
+      </ul>
+      <p style="margin-top:12px">這部分屬您的業務政策範疇，我們可以提供技術說明文件配合您的保險經紀。</p>
+    </div>
+    <div class="review-bar">
+      <span class="review-prompt">您是否已有保險經紀，或需要我們推薦？</span>
+      <button class="btn btn-ok" data-action="ok">✓ 我自己處理</button>
+      <button class="btn btn-discuss" data-action="discuss">💬 想討論</button>
+      <div class="review-note">
+        <label>請告訴我您想討論甚麼：</label>
+        <textarea placeholder="例如：可否推薦保險經紀 / 需要哪些技術文件支援保險申請..."></textarea>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8. 私隱 + 清潔 ============ -->
+<section class="section" id="s8">
+  <span class="section-num">— Item 08</span>
+  <h2 class="section-title">私隱合規 & 場地清潔</h2>
+  <p class="section-lead">兩項並行的營運配套，需於上線前敲定政策。</p>
+
+  <div class="card" data-id="privacy_cleaning">
+    <div class="card-head">
+      <div class="card-tag">合規 + 營運</div>
+      <h3 class="card-title">私隱條例 + 清潔排程</h3>
+    </div>
+    <div class="card-body">
+      <p><strong>數據私隱合規：</strong>CCTV 監控及會員資料須符合香港《個人資料（私隱）條例》—</p>
+      <ul>
+        <li>收集目的須明確告知會員並取得同意</li>
+        <li>CCTV 拍攝範圍、儲存位置及保留期限政策</li>
+        <li>付款資料儲存須符合 PCI DSS 標準</li>
+      </ul>
+      <p style="margin-top:14px"><strong>場地清潔及維護：</strong>系統雖自動化，場地實體仍需人手維護 —</p>
+      <ul>
+        <li>每日/每節後的清潔排程及人員安排</li>
+        <li>瑜伽墊及器材消毒流程</li>
+        <li>補給品（毛巾、消毒液）庫存提醒（可整合至 BuildOS 提示）</li>
+      </ul>
+    </div>
+    <div class="review-bar">
+      <span class="review-prompt">這些配套您打算自行安排，還是希望我們協助？</span>
+      <button class="btn btn-ok" data-action="ok">✓ 我自行安排</button>
+      <button class="btn btn-discuss" data-action="discuss">💬 想討論</button>
+      <div class="review-note">
+        <label>請告訴我您想討論甚麼：</label>
+        <textarea placeholder="例如：需要推薦清潔公司 / 想將清潔排程整合進 BuildOS..."></textarea>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 9. 退款政策 ============ -->
+<section class="section" id="s9">
+  <span class="section-num">— Item 09</span>
+  <h2 class="section-title">退款及取消政策</h2>
+  <p class="section-lead">需在系統上線前確立明確規則，並於 AskJary 對話流程中實作。</p>
+
+  <div class="card" data-id="refund">
+    <div class="card-head">
+      <div class="card-tag">業務政策</div>
+      <h3 class="card-title">需要您決定的三條規則</h3>
+    </div>
+    <div class="card-body">
+      <ul class="feature-list">
+        <li>
+          <span class="feat-name">預訂取消時限</span>
+          <span class="feat-desc">例如：X 小時前免費取消（建議 24 或 12 小時）</span>
+        </li>
+        <li>
+          <span class="feat-name">缺席（No-show）</span>
+          <span class="feat-desc">扣次數？罰款？不退？需在 T&C 列明並由 AskJary 自動執行</span>
+        </li>
+        <li>
+          <span class="feat-name">會籍中途退款</span>
+          <span class="feat-desc">未使用部分按比例退？不退？凍結轉移？</span>
+        </li>
+      </ul>
+    </div>
+    <div class="review-bar">
+      <span class="review-prompt">您心目中的政策大概是怎樣？</span>
+      <button class="btn btn-ok" data-action="ok">✓ 用業界標準</button>
+      <button class="btn btn-discuss" data-action="discuss">💬 想討論</button>
+      <div class="review-note">
+        <label>請告訴我您想討論甚麼：</label>
+        <textarea placeholder="例如：取消時限想設 12 小時 / 缺席扣一節 / 會籍不退但可凍結 3 個月..."></textarea>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SUMMARY ============ -->
+<section class="summary-section" id="summary">
+  <div class="summary-eyebrow">會議用 · Meeting Summary</div>
+  <h2 class="summary-title">需<em>跟進</em>事項</h2>
+  <p class="summary-sub">— 以下是您標記為「想討論」的所有事項，可截圖或列印作會議紀錄。</p>
+
+  <div class="summary-stats">
+    <div class="stat">
+      <div class="stat-num ok" id="okCount">0</div>
+      <div class="stat-label">✓ 已確認</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num discuss" id="discussCount">0</div>
+      <div class="stat-label">💬 需討論</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num pending" id="pendingCount">10</div>
+      <div class="stat-label">○ 未審閱</div>
+    </div>
+  </div>
+
+  <div class="summary-list-title">需討論清單</div>
+  <ul id="discussList">
+    <li class="discuss-empty" id="discussEmpty">未有想討論的項目 — 全部確認後即可進入下一步。</li>
+  </ul>
+
+  <div class="summary-actions">
+    <button class="btn-print" onclick="window.print()">🖨️ 列印 / 儲存為 PDF</button>
+    <button class="btn-reset" onclick="resetAll()">重設全部</button>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="marca">JARY AI × UPNX</div>
+  <div>2026 年 5 月 · 瑜伽中心自助管理系統方案審閱頁面</div>
+</footer>
+
+<script>
+  // ============ Mermaid init ============
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: 'base',
+    themeVariables: {
+      primaryColor: '#FAF6EC',
+      primaryTextColor: '#1B2620',
+      primaryBorderColor: '#2C4438',
+      lineColor: '#5E7A66',
+      secondaryColor: '#E4ECD9',
+      tertiaryColor: '#F2EDE2',
+      fontFamily: '"Manrope","Noto Sans TC",sans-serif',
+      fontSize: '13px',
+      noteBkgColor: '#F5E3D3',
+      noteTextColor: '#A24A1F',
+      noteBorderColor: '#B07A3F',
+      actorBkg: '#FAF6EC',
+      actorBorder: '#2C4438',
+      actorTextColor: '#1B2620',
+      signalColor: '#3B4A41',
+      signalTextColor: '#1B2620'
+    },
+    flowchart: { curve: 'basis', padding: 16 },
+    sequence: { actorMargin: 60, messageFontSize: 12 }
+  });
+
+  // ============ Review state ============
+  const state = {}; // { cardId: { status: 'ok'|'discuss', note: string, title: string } }
+
+  function updateSummary() {
+    let ok = 0, discuss = 0;
+    const discussItems = [];
+
+    document.querySelectorAll('.card[data-id]').forEach(card => {
+      const id = card.dataset.id;
+      const s = state[id];
+      if (!s) return;
+      if (s.status === 'ok') ok++;
+      else if (s.status === 'discuss') {
+        discuss++;
+        discussItems.push({
+          id,
+          title: card.querySelector('.card-title').textContent,
+          note: s.note || ''
+        });
+      }
+    });
+
+    const reviewed = ok + discuss;
+    const total = 10;
+
+    // top bar
+    document.getElementById('reviewedCount').textContent = reviewed;
+    const badge = document.getElementById('discussBadge');
+    badge.textContent = discuss + ' 項想討論';
+    badge.style.color = discuss > 0 ? 'var(--discuss)' : 'var(--muted)';
+    badge.style.fontWeight = discuss > 0 ? '600' : '400';
+
+    // summary stats
+    document.getElementById('okCount').textContent = ok;
+    document.getElementById('discussCount').textContent = discuss;
+    document.getElementById('pendingCount').textContent = total - reviewed;
+
+    // discuss list
+    const listEl = document.getElementById('discussList');
+    const emptyEl = document.getElementById('discussEmpty');
+    // Clear non-empty items
+    listEl.querySelectorAll('li:not(#discussEmpty)').forEach(li => li.remove());
+
+    if (discussItems.length === 0) {
+      emptyEl.style.display = 'block';
+    } else {
+      emptyEl.style.display = 'none';
+      discussItems.forEach(item => {
+        const li = document.createElement('li');
+        const title = document.createElement('div');
+        title.className = 'discuss-item-title';
+        title.textContent = '· ' + item.title;
+        const note = document.createElement('div');
+        note.className = 'discuss-item-note';
+        if (item.note.trim()) {
+          note.textContent = '「' + item.note + '」';
+        } else {
+          note.textContent = '（未填寫具體想討論的內容）';
+          note.classList.add('empty');
+        }
+        li.appendChild(title);
+        li.appendChild(note);
+        listEl.appendChild(li);
+      });
+    }
+  }
+
+  document.querySelectorAll('.card[data-id]').forEach(card => {
+    const id = card.dataset.id;
+    const okBtn = card.querySelector('.btn-ok');
+    const discussBtn = card.querySelector('.btn-discuss');
+    const noteBox = card.querySelector('.review-note');
+    const textarea = noteBox ? noteBox.querySelector('textarea') : null;
+
+    state[id] = { status: null, note: '' };
+
+    okBtn.addEventListener('click', () => {
+      state[id].status = 'ok';
+      okBtn.classList.add('active');
+      discussBtn.classList.remove('active');
+      card.classList.add('is-ok');
+      card.classList.remove('is-discuss');
+      if (noteBox) noteBox.classList.remove('open');
+      updateSummary();
+    });
+
+    discussBtn.addEventListener('click', () => {
+      state[id].status = 'discuss';
+      discussBtn.classList.add('active');
+      okBtn.classList.remove('active');
+      card.classList.add('is-discuss');
+      card.classList.remove('is-ok');
+      if (noteBox) {
+        noteBox.classList.add('open');
+        setTimeout(() => textarea && textarea.focus(), 300);
+      }
+      updateSummary();
+    });
+
+    if (textarea) {
+      textarea.addEventListener('input', (e) => {
+        state[id].note = e.target.value;
+        updateSummary();
+      });
+    }
+  });
+
+  function resetAll() {
+    if (!confirm('確定要清除所有審閱記錄嗎？')) return;
+    Object.keys(state).forEach(id => {
+      state[id] = { status: null, note: '' };
+    });
+    document.querySelectorAll('.card[data-id]').forEach(card => {
+      card.classList.remove('is-ok','is-discuss');
+      card.querySelectorAll('.btn').forEach(b => b.classList.remove('active'));
+      const ta = card.querySelector('textarea');
+      if (ta) ta.value = '';
+      const nb = card.querySelector('.review-note');
+      if (nb) nb.classList.remove('open');
+    });
+    updateSummary();
+  }
+
+  updateSummary();
+</script>
+</body>
+</html>
