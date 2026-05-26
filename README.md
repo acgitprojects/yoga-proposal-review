@@ -1,46 +1,57 @@
 # 瑜伽中心自助管理系統 · 方案審閱
 
-互動式提案審閱頁面，為 Jason（Target Success）與 JARY AI × UPNX 開會時使用。
+互動式提案審閱頁面 — 為 Jason（Target Success）與 JARY AI × UPNX 開會用。
 
-🌐 **Live demo**: 啟用 GitHub Pages 後可在 `https://<user>.github.io/<repo>/` 直接打開
+## 🌐 Live Pages
 
-## 內容
+| 版本 | URL | 說明 |
+|------|-----|------|
+| **v1.2 最終共識** | [index.html](index.html) | Jason 第二輪反饋整合版 — 待最終確認簽約 |
+| v1.0 原版 | [v1.0.html](v1.0.html) | 第一輪審閱版本（歷史保留） |
 
-10 個關鍵決策點，每項可單獨標記為「沒問題」或「想討論」，最終會在頁底自動匯總一份「需討論清單」，方便會議用截圖或列印。
+GitHub Pages（啟用後）：
 
-| 編號 | 審閱項目 |
-|------|---------|
-| 01 | 整體系統設計 |
-| 02 | AskJary 三級分流邏輯 |
-| 03 | 系統流程圖（架構 / 會員旅程 / 時序） |
-| 04 | 一次性費用 HK$29,100 |
-| 05 | 每月費用 HK$800 |
-| 06 | 5 週時間表 |
-| 07 | ⚠️ 緊急應變責任（最關鍵） |
-| 08 | 保險覆蓋 |
-| 09 | 私隱合規 + 場地清潔 |
-| 10 | 退款及取消政策 |
+- 預設首頁：`https://acgitprojects.github.io/yoga-proposal-review/` → v1.2
+- v1.0 存檔：`https://acgitprojects.github.io/yoga-proposal-review/v1.0.html`
+
+## v1.2 變動摘要
+
+Jason 第二輪反饋整合 — 簡化、務實、權責分明：
+
+### 💰 報價最終定稿
+- 一次性費用：**HK$29,100**
+- 月費：**HK$800 / 單位**（原價 USD$168/月 嘅折扣價）
+- 第 2 間及之後：**+HK$11,000** 一次性 + HK$800/月（每單位）
+- 上線時程：**4 週**緊湊版
+
+### ❌ 移除 10 項功能
+OTP、多號碼綁定、擴香機補貨提示、4G CPE、離場智能提示、AskJary 自動發 Promo Code、來電通知、Motion sensing、設備自動重啟、低庫存追蹤
+
+### ✅ 拍板嘅核心商業條款
+- 硬件、會員資料 100% 屬甲方
+- 設備可獨立運作（終止後用原廠 App）
+- WhatsApp 無發送上限
+- Stripe 支付
+- 不設綁約、30 日通知終止
+
+詳情見 [index.html](index.html)（即 v1.2）。
 
 ## 技術
 
-- 單一 HTML 檔（無框架，無 build step）
-- [Mermaid.js](https://mermaid.js.org/) 用於流程圖
+- 純前端單頁（無框架，無 build step）
+- v1.0 含 Mermaid.js 流程圖
 - Google Fonts: Fraunces · Manrope · Noto Serif TC · Noto Sans TC
-- 響應式設計 + 列印樣式
+- 響應式設計 + 列印優化
 
-## 使用方法
+## 部署 GitHub Pages
 
-直接打開 `index.html`，或部署到 GitHub Pages：
-
-```bash
-# 在 repo settings 啟用 GitHub Pages（從 main branch root）
-```
+到 repo Settings → Pages → Source 選 `main` + `/(root)`，等 1-2 分鐘 build 完成。
 
 ## 設計
 
 - **客戶**：Jason · Target Success
 - **場地**：約 500 平方呎瑜伽中心
-- **方案版本**：v1.0
+- **版本**：v1.2（最新）· v1.0（原版）
 - **準備**：JARY AI × UPNX · 2026 年 5 月
 
 ---
