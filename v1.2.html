@@ -1076,20 +1076,16 @@
   <div class="changelog-grid">
     <div class="change-col removed">
       <div class="change-head">
-        <div class="change-num">10</div>
+        <div class="change-num">06</div>
         <div class="change-label">已移除</div>
       </div>
       <ul class="change-list">
-        <li>OTP 雙重驗證</li>
-        <li>多 WhatsApp 號碼綁定</li>
-        <li>擴香機自動補貨提示</li>
-        <li>4G CPE 後備網絡</li>
         <li>離場前 10 分鐘智能提示</li>
-        <li>AskJary 自動發 Promo Code</li>
-        <li>AskJary 來電通知</li>
+        <li>預約前一日溫馨提示</li>
+        <li>24 小時內合二為一邏輯</li>
         <li>Motion / Video AI 異常偵測</li>
         <li>設備自動遠端重啟</li>
-        <li>低庫存自動追蹤</li>
+        <li>1 小時到場 SLA<span style="font-size:11px;color:var(--muted);font-style:italic"> (v1.0 原版)</span></li>
       </ul>
     </div>
 
@@ -1174,28 +1170,11 @@
         <div class="consensus-label">✓ v1.2 共識</div>
         <ul class="consensus-list">
           <li>會員<strong>只認登記時嘅 WhatsApp 號碼</strong>（每帳號 1 個號碼）</li>
-          <li>用其他號碼來電 → AskJary 回覆「請用您登記嘅號碼，或到網站更新」</li>
+          <li>用其他號碼發訊息 → AskJary 無法識別，需用登記號碼</li>
           <li>時段結束 → <strong>抽風機 + 擴香機自動啟動 15 分鐘</strong>，之後同步關閉所有設備</li>
           <li>智慧鎖<strong>原生 offline PIN</strong>：斷網仍可用密碼開鎖</li>
           <li>但 offline PIN <strong>每次使用後業主需手動更改</strong>（透過鎖具廠商原廠 App）</li>
         </ul>
-      </div>
-      <div class="changes-row">
-        <div class="change-block rem">
-          <div class="change-block-label">✕ 已移除</div>
-          <ul class="change-block-list">
-            <li>OTP 雙重驗證</li>
-            <li>多號碼綁定</li>
-            <li>擴香機補貨提示</li>
-            <li>4G CPE 後備網絡</li>
-          </ul>
-        </div>
-        <div class="change-block mod">
-          <div class="change-block-label">↻ 已修訂</div>
-          <ul class="change-block-list">
-            <li>offline PIN 由「自動同步」改「業主手動操作」</li>
-          </ul>
-        </div>
       </div>
     </div>
     <div class="review-bar">
@@ -1222,26 +1201,17 @@
           <li><strong>緊急（人身安全）</strong>：即時 WhatsApp 通知業主，AskJary 提供應急指引</li>
           <li><strong>設備問題</strong>：AskJary 提供有限自助支援 + 當日內 WhatsApp 通知（緊急度降低，因業主無法即時到場）</li>
           <li><strong>門鎖無反應</strong>：AskJary 直接建議用戶<strong>致電業主</strong>，避免在門外等</li>
-          <li>關鍵字觸發簡單建議（如「冷氣不冷」→ 1-2 個基本建議 + 登記）</li>
+          <li>關鍵字觸發有限自助建議 + 登記畀業主跟進</li>
           <li><strong>Promo Code</strong>：業主預先定義可獲補償嘅事故，AskJary 通知業主，<strong>業主審批後在後台手動發放</strong></li>
         </ul>
       </div>
-      <div class="changes-row">
-        <div class="change-block rem">
-          <div class="change-block-label">✕ 已移除</div>
-          <ul class="change-block-list">
-            <li>AskJary 即時來電通知</li>
-            <li>AskJary 自動發 Promo Code</li>
-            <li>多輪 Troubleshooting 流程</li>
-          </ul>
-        </div>
-        <div class="change-block mod">
-          <div class="change-block-label">↻ 已修訂</div>
-          <ul class="change-block-list">
-            <li>設備故障緊急度降級</li>
-            <li>門鎖無反應 → 直接致電業主</li>
-          </ul>
-        </div>
+      <div class="change-block mod changes-single">
+        <div class="change-block-label">↻ vs v1.0 變動</div>
+        <ul class="change-block-list">
+          <li>設備故障緊急度降級（業主無法即時到場）</li>
+          <li>門鎖無反應 → 直接致電業主，唔再嘗試 troubleshoot</li>
+          <li>Promo Code → 業主審批 + 後台手動發放</li>
+        </ul>
       </div>
     </div>
     <div class="review-bar">
@@ -1379,21 +1349,12 @@
           <li><strong>不設綁約</strong>，每月計（終止通知期具體待傾）</li>
         </ul>
       </div>
-      <div class="changes-row">
-        <div class="change-block rem">
-          <div class="change-block-label">✕ 已移除</div>
-          <ul class="change-block-list">
-            <li>5,000 條/月 WhatsApp 上限</li>
-            <li>超出後 HK$60/1,000 條額外收費</li>
-          </ul>
-        </div>
-        <div class="change-block mod">
-          <div class="change-block-label">↻ 已修訂</div>
-          <ul class="change-block-list">
-            <li>WhatsApp 改為無上限</li>
-            <li>明確披露原價（USD$168/月）</li>
-          </ul>
-        </div>
+      <div class="change-block mod changes-single">
+        <div class="change-block-label">↻ vs v1.0 變動</div>
+        <ul class="change-block-list">
+          <li>WhatsApp 訊息無發送上限</li>
+          <li>明確披露原價（USD$168/月）</li>
+        </ul>
       </div>
     </div>
     <div class="review-bar">
@@ -1531,19 +1492,12 @@
           <li>訊息樣板可由業主自定，AskJary 自動發送畀指定清潔工號碼</li>
         </ul>
       </div>
-      <div class="changes-row">
-        <div class="change-block rem">
-          <div class="change-block-label">✕ 已移除</div>
-          <ul class="change-block-list">
-            <li>低庫存自動追蹤（需額外 sensor，超出範圍）</li>
-          </ul>
-        </div>
-        <div class="change-block mod">
-          <div class="change-block-label">↻ 已修訂</div>
-          <ul class="change-block-list">
-            <li>支付方案統一用 Stripe</li>
-          </ul>
-        </div>
+      <div class="change-block mod changes-single">
+        <div class="change-block-label">↻ vs v1.0 變動</div>
+        <ul class="change-block-list">
+          <li>支付方案統一用 Stripe</li>
+          <li>新增清潔工自動 WhatsApp 通知（可設 threshold）</li>
+        </ul>
       </div>
     </div>
     <div class="review-bar">
