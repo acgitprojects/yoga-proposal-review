@@ -913,6 +913,84 @@
     border-bottom: 1px dotted var(--amber);
   }
 
+  /* ============ COST BREAKDOWN & SCOPE ============ */
+  .cost-scope-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .cost-side, .scope-side {
+    background: var(--ok-bg);
+    border-left: 3px solid var(--ok);
+    padding: 16px 18px;
+    border-radius: 0 4px 4px 0;
+  }
+  .cost-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-top: 6px;
+  }
+  .cost-table td {
+    padding: 7px 0;
+    border-bottom: 1px dashed rgba(74,107,67,0.2);
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+  .cost-table td:first-child {
+    font-weight: 500;
+    color: var(--forest);
+  }
+  .cost-table td:last-child {
+    text-align: right;
+    font-family: var(--serif);
+    font-weight: 500;
+    color: var(--forest);
+    white-space: nowrap;
+    padding-left: 12px;
+  }
+  .cost-table tr.total td {
+    border-bottom: none;
+    border-top: 1.5px solid var(--ok);
+    padding-top: 10px;
+    font-size: 15px;
+    font-family: var(--serif);
+    font-weight: 600;
+    color: var(--forest);
+  }
+  .scope-list {
+    list-style: none;
+    padding: 0;
+    margin: 6px 0 0 0;
+  }
+  .scope-list li {
+    padding: 7px 0;
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    border-bottom: 1px dashed rgba(74,107,67,0.15);
+  }
+  .scope-list li:last-child { border-bottom: none; }
+  .scope-list li::before {
+    content: "◆";
+    color: var(--ok);
+    flex-shrink: 0;
+    font-size: 9px;
+  }
+  .scope-list li strong { color: var(--forest); font-weight: 600; }
+  .scope-list li .scope-note {
+    font-size: 11px;
+    color: var(--muted);
+    font-style: italic;
+  }
+  .changes-single {
+    margin-top: 14px;
+  }
+
   /* responsive */
   @media (max-width: 760px) {
     .topbar-inner { padding: 12px 20px; flex-wrap: wrap; }
@@ -922,6 +1000,7 @@
     .changelog-grid { grid-template-columns: 1fr; }
     .pricing-grid { grid-template-columns: 1fr; }
     .changes-row { grid-template-columns: 1fr; }
+    .cost-scope-grid { grid-template-columns: 1fr; }
     .item-head, .item-body { padding-left: 20px; padding-right: 20px; }
     .review-bar { padding: 14px 20px; }
     .terms-table td { padding: 14px 20px; }
@@ -1055,7 +1134,7 @@
     <div class="price-cell">
       <div class="ptype">一次性</div>
       <div class="pamount"><span class="pcurr">HK$</span>29,100</div>
-      <div class="pdesc">硬件 + 安裝 + 軟件定制開發<br>含 Smart Plug × 2（抽風機 + 擴香機）</div>
+      <div class="pdesc">9 項細項合計（見 Item 04）<br>硬件 · 安裝 · AI License · 客製化</div>
     </div>
     <div class="price-cell">
       <div class="ptype">每月（單位）</div>
@@ -1227,37 +1306,52 @@
   <div class="item-card" data-id="i04">
     <div class="item-head">
       <span class="item-num">Item 04</span>
-      <h3 class="item-title">一次性費用 · HK$29,100</h3>
+      <h3 class="item-title">一次性費用 · HK$29,100 · 細項明細</h3>
     </div>
     <div class="item-body">
-      <div class="consensus-box">
-        <div class="consensus-label">✓ v1.2 共識</div>
-        <ul class="consensus-list">
-          <li><strong>硬件設備</strong>（智慧鎖 · 照明控制器 · 恆溫器 · Smart Plug × 2）：HK$5,000</li>
-          <li><strong>現場安裝及調試</strong>：HK$6,000</li>
-          <li><strong>軟件定制開發</strong>（含 AI 整合 · 預訂系統 · 會員邏輯 · AskJary 整合）：HK$18,100</li>
-          <li><strong>一次性合計</strong>：<strong>HK$29,100</strong></li>
-          <li>Smart Plug 不另收費（控制抽風機 + 擴香機）</li>
-        </ul>
+      <div class="cost-scope-grid">
+        <div class="cost-side">
+          <div class="consensus-label">✓ 費用細項（9 項）</div>
+          <table class="cost-table">
+            <tr><td>門鎖及磁鎖</td><td>HK$800</td></tr>
+            <tr><td>燈制</td><td>HK$150</td></tr>
+            <tr><td>CCTV</td><td>HK$1,000</td></tr>
+            <tr><td>冷氣 Thermostat</td><td>HK$2,000</td></tr>
+            <tr><td>Wi-Fi Router</td><td>HK$1,050</td></tr>
+            <tr><td>電工安裝</td><td>HK$4,000</td></tr>
+            <tr><td>現場調試</td><td>HK$2,000</td></tr>
+            <tr><td>AI Coding License</td><td>HK$3,100</td></tr>
+            <tr><td>首次客製化</td><td>HK$15,000</td></tr>
+            <tr class="total"><td>一次性合計</td><td>HK$29,100</td></tr>
+          </table>
+        </div>
+        <div class="scope-side">
+          <div class="consensus-label">★ 系統包括（9 項交付物）</div>
+          <ul class="scope-list">
+            <li><strong>Public Website</strong><span class="scope-note">推廣 landing page</span></li>
+            <li><strong>Admin Portal</strong><span class="scope-note">Desktop + Mobile</span></li>
+            <li><strong>Member Portal</strong><span class="scope-note">Desktop + Mobile</span></li>
+            <li><strong>Admin Dashboards</strong><span class="scope-note">業主管理儀表板</span></li>
+            <li><strong>Membership System</strong><span class="scope-note">Basic</span></li>
+            <li><strong>Booking System</strong><span class="scope-note">Basic</span></li>
+            <li><strong>Accounting System</strong><span class="scope-note">Basic</span></li>
+            <li><strong>Admin Remote Control</strong><span class="scope-note">遠端設備控制</span></li>
+            <li><strong>AI WhatsApp CS</strong><span class="scope-note">AskJary 客服</span></li>
+          </ul>
+        </div>
       </div>
-      <div class="changes-row">
-        <div class="change-block rem">
-          <div class="change-block-label">✕ 已移除</div>
-          <ul class="change-block-list">
-            <li>「AI 智能平台許可證」獨立項目（HK$3,100）</li>
-          </ul>
-        </div>
-        <div class="change-block mod">
-          <div class="change-block-label">↻ 已修訂</div>
-          <ul class="change-block-list">
-            <li>AI 平台費用併入「軟件定制開發」</li>
-            <li>Smart Plug 不另收費</li>
-          </ul>
-        </div>
+      <div class="change-block mod changes-single">
+        <div class="change-block-label">↻ vs v1.0 變動</div>
+        <ul class="change-block-list">
+          <li>合計 HK$29,100 不變</li>
+          <li>費用拆解：4 大項 → 9 項細節（更透明）</li>
+          <li>AI Coding License 保留為獨立項目（HK$3,100）</li>
+          <li>新增「系統包括」9 項交付物清單，明確客戶得到嘅產品範圍</li>
+        </ul>
       </div>
     </div>
     <div class="review-bar">
-      <span class="review-prompt">確認 Item 04 最終報價？</span>
+      <span class="review-prompt">確認 Item 04 細項明細？</span>
       <button class="btn btn-ok" data-action="ok">✓ 確認</button>
       <button class="btn btn-discuss" data-action="discuss">💬 還想討論</button>
       <div class="review-note">

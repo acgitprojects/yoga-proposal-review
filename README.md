@@ -19,10 +19,13 @@ GitHub Pages（啟用後）：
 Jason 第二輪反饋整合 — 簡化、務實、權責分明：
 
 ### 💰 報價最終定稿
-- 一次性費用：**HK$29,100**
+- 一次性費用：**HK$29,100**（9 項細項明細，見 Item 04）
 - 月費：**HK$800 / 單位**（原價 USD$168/月 嘅折扣價）
 - 第 2 間及之後：**+HK$11,000** 一次性 + HK$800/月（每單位）
 - 上線時程：**4 週**緊湊版
+
+### 📦 系統包括（9 項交付物）
+Public Website · Admin Portal · Member Portal · Admin Dashboards · Membership System · Booking System · Accounting System · Admin Remote Control · AI WhatsApp CS
 
 ### ❌ 移除 10 項功能
 OTP、多號碼綁定、擴香機補貨提示、4G CPE、離場智能提示、AskJary 自動發 Promo Code、來電通知、Motion sensing、設備自動重啟、低庫存追蹤
