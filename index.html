@@ -1267,7 +1267,7 @@
         <ul class="consensus-list">
           <li><strong>預約成功</strong> → 即時 WhatsApp 確認訊息 <strong>+ 門鎖密碼一齊發送</strong>（密碼未生效）</li>
           <li><strong>時段開始</strong> → 密碼正式生效，會員可開鎖入場</li>
-          <li><strong>時段內整點定時</strong> → 系統推一次提示（純定時，唔判斷剩餘時間）</li>
+          <li><strong>時段內</strong> → 預設定時提示（純定時，不智能判斷剩餘時間）</li>
           <li><strong>時段結束</strong> → 觸發抽風機 + 擴香機 15 分鐘</li>
           <li><strong>結束後 15 分鐘</strong> → 所有設備同步關閉，密碼失效</li>
           <li><strong>CCTV 影像保留 30 日</strong>（符合私隱條例）</li>
@@ -1376,8 +1376,7 @@
           <li>包含 <strong>BuildOS（智能系統）+ AskJary（AI 系統）</strong></li>
           <li>原價 USD$99 + USD$69 = USD$168/月，<strong>HK$800 係折扣價</strong></li>
           <li><strong>WhatsApp 無發送上限</strong></li>
-          <li>包含系統維護、AI 平台運算、所有自動化觸發、Stripe 整合</li>
-          <li><strong>不設綁約</strong>，每月計，30 日通知可終止</li>
+          <li><strong>不設綁約</strong>，每月計（終止通知期具體待傾）</li>
         </ul>
       </div>
       <div class="changes-row">
@@ -1418,27 +1417,19 @@
       <div class="consensus-box">
         <div class="consensus-label">✓ v1.2 共識</div>
         <ul class="consensus-list">
-          <li><strong>第 1 週</strong>：需求確認（3-4 個工作天，業主需配合 2 次密集會議）</li>
-          <li><strong>第 2 週</strong>：硬件採購 + 安裝（5-7 天，業主需提供場地不少於 3 天嘅安裝時段）</li>
-          <li><strong>第 3 週</strong>：系統設置 + AskJary 整合（7 天，業主需提供會籍方案 + 收費細節）</li>
-          <li><strong>第 4 週</strong>：用戶驗收 + 培訓（5 天，業主出席 1 次培訓 + 端對端測試）</li>
-          <li>合約保留 5 週為安全 buffer</li>
+          <li><strong>4 週緊湊版完工</strong>（vs v1.0 嘅 5 週）</li>
+          <li>第 1 週：需求確認</li>
+          <li>第 2 週：硬件採購 + 安裝</li>
+          <li>第 3 週：系統設置 + AskJary 整合</li>
+          <li>第 4 週:用戶驗收 + 培訓</li>
+          <li>細節時程簽約後一齊定</li>
         </ul>
       </div>
-      <div class="changes-row">
-        <div class="change-block mod">
-          <div class="change-block-label">↻ 已修訂</div>
-          <ul class="change-block-list">
-            <li>由 5 週 → 4 週緊湊版</li>
-            <li>因 v1.2 範圍縮減，更有把握達成 4 週</li>
-          </ul>
-        </div>
-        <div class="change-block rem">
-          <div class="change-block-label">✕ 已移除</div>
-          <ul class="change-block-list">
-            <li>3 週版本（測試時間太短，唔建議）</li>
-          </ul>
-        </div>
+      <div class="change-block mod changes-single">
+        <div class="change-block-label">↻ vs v1.0 變動</div>
+        <ul class="change-block-list">
+          <li>由 5 週 → 4 週緊湊版</li>
+        </ul>
       </div>
     </div>
     <div class="review-bar">
@@ -1509,8 +1500,6 @@
         <div class="consensus-label">✓ v1.2 共識</div>
         <ul class="consensus-list">
           <li><strong>保險完全由業主自行安排</strong>，與本系統無關</li>
-          <li>我們可應業主要求<strong>提供系統技術文件</strong>給保險經紀評估用</li>
-          <li>包括：自動化設備清單、安全認證、緊急應變機制清單</li>
         </ul>
       </div>
     </div>
@@ -1547,7 +1536,6 @@
           <div class="change-block-label">✕ 已移除</div>
           <ul class="change-block-list">
             <li>低庫存自動追蹤（需額外 sensor，超出範圍）</li>
-            <li>清潔工完成回報 + 相片上傳</li>
           </ul>
         </div>
         <div class="change-block mod">
@@ -1584,7 +1572,6 @@
           <li>① 預訂取消：24 小時前可全額退；少於 24 小時系統 Block + 視為已使用</li>
           <li>② No-show：100% 預繳制，不退款，AskJary 不介入</li>
           <li>③ 會籍套票：一經售出不設退款，可<strong>轉讓畀其他已註冊會員</strong></li>
-          <li>已有預約沿用當時規則（不溯及既往）</li>
         </ul>
       </div>
     </div>
@@ -1631,7 +1618,7 @@
     </tr>
     <tr>
       <td>合約綁定</td>
-      <td><strong>不設綁約</strong>，每月計，<strong>30 日通知</strong>可終止；終止前我們協助匯出全部資料</td>
+      <td><strong>不設綁約</strong>，每月計（通知期具體待傾）；終止前我們協助匯出全部資料</td>
     </tr>
     <tr>
       <td>支付網閘</td>
@@ -1639,7 +1626,7 @@
     </tr>
     <tr>
       <td>保險</td>
-      <td>業主自行安排（公眾責任險等），與系統無關。我們可提供技術文件配合保險經紀評估。</td>
+      <td>業主自行安排，與系統無關</td>
     </tr>
   </table>
   <div class="review-bar">
